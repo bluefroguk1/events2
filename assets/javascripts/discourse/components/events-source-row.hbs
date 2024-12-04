@@ -1,0 +1,66 @@
+<td>
+  <Input
+    @value={{source.name}}
+    placeholder={{i18n "admin.events.source.name.placeholder"}}
+    class="small source-name"
+  />
+</td>
+
+<td>
+  <ComboBox
+    @value={{source.provider_id}}
+    @content={{providers}}
+    @onChange={{action "updateProvider"}}
+    class="source-provider"
+    options={{hash none="admin.events.source.provider.select"}}
+  />
+</td>
+
+<td class="source-options">
+  {{#if showSourceOptions}}
+    <DButton
+      @action={{action "openSourceOptions"}}
+      @label="admin.events.source.source_options.label"
+      @title="admin.events.source.source_options.title"
+      @icon="cog"
+      class="open-source-options-modal"
+    />
+  {{else}}
+    {{i18n "admin.events.source.source_options.none"}}
+  {{/if}}
+</td>
+
+<td>
+  <DButton
+    @icon="filter"
+    @label="admin.events.filters.label"
+    @title="admin.events.filters.title"
+    @action={{action "openFilters"}}
+    class="show-filters"
+  />
+</td>
+
+<td class="action-column">
+  <ConditionalLoadingSpinner @condition={{saving}} @size="small" />
+  <DButton
+    @action={{action "saveSource"}}
+    @icon="save"
+    @class={{this.saveClass}}
+    @title="admin.events.source.save.title"
+    @disabled={{this.saveDisabled}}
+  />
+  <DButton
+    @action={{removeSource}}
+    @actionParam={{source}}
+    @icon="trash-alt"
+    @title="admin.events.source.remove.title"
+    class="remove-source btn-danger"
+  />
+  <DButton
+    @action={{action "importSource"}}
+    @icon="download"
+    @title="admin.events.source.import.title"
+    class={{importClass}}
+    @disabled={{importDisabled}}
+  />
+</td>

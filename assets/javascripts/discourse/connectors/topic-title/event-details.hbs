@@ -1,0 +1,13 @@
+{{#unless model.editingTopic}}
+  {{#if model.event}}
+    <div class="topic-event-label">
+      {{event-label model.event topic="true"}}
+      {{#if siteSettings.events_add_to_calendar}}
+        <AddToCalendar @topic={{model}} />
+      {{/if}}
+    </div>
+    {{#if showRsvp}}
+      <EventRsvp @topic={{model}} />
+    {{/if}}
+  {{/if}}
+{{/unless}}
